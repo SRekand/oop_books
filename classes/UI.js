@@ -15,7 +15,6 @@ class UI {
         }
         return element;
     }
-
     addBook(book) {
         const tbody = document.querySelector("tbody");
         // Create and append tr element
