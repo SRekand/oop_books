@@ -123,13 +123,11 @@ function addBook(event) {
 
 function deleteTask(event) {
     if(event.target.textContent === "x") {
-        if(confirm("Delete?")) {
             td_element = event.target.parentElement;
             td_element.parentElement.remove();
             book = td_element.parentElement.firstChild.textContent;
             deleteTaskFromLocalStorage(book);
         }
-    }
 }
 
 function addTaskToLocalStorage(massiiv) {
