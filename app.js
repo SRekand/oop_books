@@ -130,6 +130,7 @@ function deleteTask(event) {
         }
 }
 
+
 function addTaskToLocalStorage(massiiv) {
     let books;
     if (localStorage.getItem('books') === null) {

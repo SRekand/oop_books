@@ -16,6 +16,7 @@ class LS{
         books.push(book);
         this.setData("books", books)
     }
+
     deleteBook(book) {
         let books = this.getData("books")
         books.forEach(function (booksElement, key) {
