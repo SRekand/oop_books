@@ -1,23 +1,28 @@
-class LS {
-    // help functions to get abd set data at LS
-    getData(name){
+class LS{
+    getData(key) {
         let data;
-        if(localStorage.getItem(name) === null){
-            data = []
+        if (localStorage.getItem(key) === null) {
+            data = [];
         } else {
-            data = JSON.parse(localStorage.getItem(name));
+            data = JSON.parse(localStorage.getItem(key))
         }
         return data
     }
-
-    setData(name, data){
-        localStorage.setItem(name, JSON.stringify(data));
+    setData(key, data) {
+        localStorage.setItem("books", JSON.stringify(data))
     }
-
     addBook(book){
-        // siin on vaja raamat valmistada
-        let books = this.getData('books')
+        let books = this.getData("books")
         books.push(book);
-        this.setData('books', books);
+        this.setData("books", books)
+    }
+    deleteBook(book) {
+        let books = this.getData("books")
+        books.forEach(function (booksElement, key) {
+            if(booksElement["title"] === book) {
+                books.splice(key, 1);
+            }
+        });
+        this.setData("books", books)
     }
 }
