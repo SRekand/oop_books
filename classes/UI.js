@@ -1,36 +1,48 @@
 class UI {
-    // help function to add DOM element
-    addUIElement(name, classname = '' , textcontent = '', attributes = {}){
-        // create element
-        let element = document.createElement(name);
-        // add css style class to element
-        if (classname !== ''){
-            element.className = classname
+    addUIElement(tagname, classname = '', textcontent = '', attributes = {}) {
+        const element = document.createElement(tagname);
+        if(classname !== ''){
+            element.className = classname;
         }
-        // add text content to element
-        element.appendChild(document.createTextNode(textcontent))
-        // add atributes to element
-        if(Object.keys(attributes).length > 0){
-            for(let key in attributes){
+        // Text content
+        let text = document.createTextNode(textcontent);
+        element.appendChild(text);
+        // Attributes
+        if(Object.keys(attributes).length >  0){
+            for (let key in attributes) {
                 element.setAttribute(key, attributes[key])
             }
         }
-        return element
+        return element;
     }
+    addBook(book) {
+        const tbody = document.querySelector("tbody");
+        // Create and append tr element
+        const tr = this.addUIElement("tr");
+        tbody.appendChild(tr);
+        tr.className = 'rida';
 
-
-    addBook(book){
-        let tr = this.addUIElement('tr');
-        for(let name in book){
-            // create <td> element and add text value
-            let td = this.addUIElement('td', '', book[name]);
+        for (let key in book) {
+            let td = document.createElement("td");
             tr.appendChild(td);
+            td.innerHTML = book[key];
         }
-        let td = document.createElement('td');
-        const link = this.addUIElement('a', '', 'X', {'href':'#'});
-        td.appendChild(link);
-        tr.appendChild(td);
-        const bookList = document.querySelector('#book-list');
-        bookList.appendChild(tr);
+
+        // Create link element
+        const alink = document.createElement('a');
+        // Create text node
+        const linkText = document.createTextNode("x");
+        // Add text to link
+        alink.appendChild(linkText);
+        // Create link reference
+        alink.href = "#";
+
+        // Make fourth td element (x link)
+        const td4 = document.createElement("td");
+        tr.appendChild(td4);
+        td4.appendChild(alink);
+    }
+    deleteBook(td_element) {
+        td_element.parentElement.remove();
     }
 }
